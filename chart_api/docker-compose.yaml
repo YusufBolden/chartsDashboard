@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  backend:
+    build: ./chart_api
+    ports:
+      - '8000:8000'
+
+  frontend:
+    build: ./next-dashboard
+    ports:
+      - '3000:3000'
