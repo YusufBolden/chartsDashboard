@@ -1,10 +1,10 @@
-### Charts Dashboard
+# Charts Dashboard
 
-### Overview
+# Overview
 
 Charts Dashboard is a web application that displays various types of charts using Next.js for the frontend and Django for the backend. It visualizes data with Candlestick, Line, Bar, and Pie charts. This application integrates with APIs to fetch data for the charts and presents it in a user-friendly interface.
 
-### Setup and Running the Application
+## Setup and Running the Application
 
 ## Prerequisites
 
@@ -19,8 +19,8 @@ Charts Dashboard is a web application that displays various types of charts usin
 
     bash
 
-git clone <repository-url>
-cd chart_api
+`gh repo clone YusufBolden/chartsDashboard
+cd chart_api`
 
 Navigate to the Django project directory:
 
