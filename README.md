@@ -1,67 +1,108 @@
-# Web Application with Next.js, Django API, Docker, and Charts
+### Charts Dashboard
 
-## Overview
+### Overview
 
-A web application for visualizing various types of chart data using Django and Next.js. This project is a web application designed to display various types of chart data, including Candlestick, Line Chart, Bar Chart, and Pie Chart. The application uses Django for the backend to serve data and Next.js for the frontend to render and display the charts.
+Charts Dashboard is a web application that displays various types of charts using Next.js for the frontend and Django for the backend. It visualizes data with Candlestick, Line, Bar, and Pie charts. This application integrates with APIs to fetch data for the charts and presents it in a user-friendly interface.
 
-### Table of Contents
+### Setup and Running the Application
 
-    Project Overview
-    Setup Instructions
-    Libraries and Tools
-    Approach and Thought Process
+## Prerequisites
 
-Project Overview
+    Node.js (v20.11.0 or later)
+    Python (version 3.x recommended)
+    npm (comes with Node.js)
+    pip (Python package manager)
 
-Setup Instructions
-Backend (Django)
+## Setting Up the Backend (Django)
 
-    Clone the Repository:
+    Clone the repository:
 
-This is a web application that displays a dashboard with multiple chart types (Candlestick, Line, Bar, Pie). The data is fetched from a Django API and displayed in the frontend built with Next.js.
+    bash
 
-## Tech Stack
+git clone <repository-url>
+cd chart_api
 
-- **Frontend**: Next.js with TypeScript
-- **Backend**: Django REST Framework
-- **State Management**: Redux
-- **Charts**: Chart.js with React wrapper (`react-chartjs-2`)
-- **Containerization**: Docker
+Navigate to the Django project directory:
 
-## How to Set Up
+bash
 
-1. **Clone the repository**:
+cd chart_api/django_backend
 
-   ```bash
-   gh repo clone YusufBolden/chartsDashboard
-   cd chart_api
-   ```
+Create and activate a virtual environment:
 
-Notes:
+bash
 
-1. Since this is a small project, the choice was made to combine actions, selectors, and types within the slices/ folder itself, as Redux Toolkit encourages a more modular approach. In a larger project, with many slices and complex logic, keeping separate folders for selectors and types makes the codebase more scalable and maintainable.
+python -m venv venv
+source venv/bin/activate # On Windows, use `venv\Scripts\activate`
 
-2. Should You Use the src Directory?
+Install the required Python packages:
 
-Using a src directory is optional but can be beneficial:
+bash
 
-    Better Organization: Keeps source code organized away from configuration files and other non-code assets.
-    Scalability: Makes it easier to manage larger projects.
+pip install -r requirements.txt
 
-If you prefer a flatter structure or have a smaller project, you can keep your code in the root directory and adjust accordingly. The choice depends on your project’s size and complexity.
+Apply database migrations:
+
+bash
+
+python manage.py migrate
+
+Run the Django development server:
+
+bash
+
+    python manage.py runserver
+
+    The Django backend should now be running at http://localhost:8000.
+
+Setting Up the Frontend (Next.js)
+
+    Navigate to the Next.js project directory:
+
+    bash
+
+cd chart_api/next_dashboard
+
+Install the required Node.js packages:
+
+bash
+
+npm install
+
+Run the Next.js development server:
+
+bash
+
+    npm run dev
+
+    The Next.js frontend should now be running at http://localhost:3000.
+
+Libraries and Tools Used
+
+    Next.js (v14.2.8): Framework for server-rendered React applications.
+    Django (v4.2.16): Backend framework for building the API.
+    Chart.js (v4.4.4): JavaScript library for rendering charts.
+    react-chartjs-2 (v5.2.0): React wrapper for Chart.js.
+    chartjs-chart-financial (v0.2.1): Extension for Chart.js to support financial charts like Candlestick.
+    TypeScript: For type safety and better development experience.
+    Python Virtual Environment: To manage dependencies for the Django project.
 
 Approach and Thought Process
 
-Backend Design:
-Developed Django views to provide hardcoded data in JSON format for different chart types.
-Defined URL patterns in Django to expose the data through API endpoints.
-Created test cases to ensure that the API endpoints are functioning correctly and returning the expected data.
+    Frontend and Backend Separation:
+        The application is divided into two main parts: the frontend (Next.js) and the backend (Django). This separation allows for a modular architecture and easier management of the development process.
 
-Frontend Design:
-Used Next.js to build the frontend application, leveraging server-side rendering for better performance.
-Integrated React Chart.js 2 to visualize data in various chart formats.
-Implemented API calls from the frontend to fetch data from the Django backend and display it in the charts.
+    Chart Integration:
+        Candlestick Chart: Implemented using chartjs-chart-financial to visualize financial data.
+        Line, Bar, and Pie Charts: Implemented using react-chartjs-2 for easy integration with React components.
 
-Testing and Validation:
-Validated API responses using Django’s testing framework to ensure the endpoints return the correct status codes and data.
-Tested the frontend integration to confirm that data is accurately fetched and rendered in the charts.
+    API Integration:
+        The frontend fetches data from the Django API using the fetch API. This data is then used to render the charts dynamically.
+
+    TypeScript for Type Safety:
+        TypeScript is used to provide type safety and better development experience, reducing potential runtime errors and improving code quality.
+
+    Error Handling and Debugging:
+        Added error handling for API calls to ensure that issues are logged and can be addressed without crashing the application.
+
+This setup provides a robust and flexible platform for visualizing data through various types of charts, and the use of modern frameworks and libraries ensures a smooth development process.
