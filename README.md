@@ -26,3 +26,12 @@ This is a web application that displays a dashboard with multiple chart types (C
 Notes:
 
 1. Since this is a small project, the choice was made to combine actions, selectors, and types within the slices/ folder itself, as Redux Toolkit encourages a more modular approach. In a larger project, with many slices and complex logic, keeping separate folders for selectors and types makes the codebase more scalable and maintainable.
+
+2. Should You Use the src Directory?
+
+Using a src directory is optional but can be beneficial:
+
+    Better Organization: Keeps source code organized away from configuration files and other non-code assets.
+    Scalability: Makes it easier to manage larger projects.
+
+If you prefer a flatter structure or have a smaller project, you can keep your code in the root directory and adjust accordingly. The choice depends on your project’s size and complexity.
