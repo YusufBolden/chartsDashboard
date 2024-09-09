@@ -1,56 +1,65 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../redux/store';
-import {
-  fetchCandlestickData,
-  fetchLineChartData,
-  fetchBarChartData,
-  fetchPieChartData
-} from '../redux/slices/apiSlice';
-import CandlestickChart from './CandlestickChart';
-import LineChart from '../components/LineChart';
-import BarChart from '../components/BarChart';
-import PieChart from '../components/PieChart';
-import { CandlestickData, LineChartData, BarChartData, PieChartData } from '../types/chartTypes';
+import dynamic from 'next/dynamic';
 
-const ChartsDashboard: React.FC = () => {
-  const dispatch = useDispatch();
-  const candlestickData = useSelector((state: RootState) => state.api.candlestickData) as CandlestickData[];
-  const lineChartData = useSelector((state: RootState) => state.api.lineChartData) as LineChartData;
-  const barChartData = useSelector((state: RootState) => state.api.barChartData) as BarChartData;
-  const pieChartData = useSelector((state: RootState) => state.api.pieChartData) as PieChartData;
-  const loading = useSelector((state: RootState) => state.api.loading);
-  const error = useSelector((state: RootState) => state.api.error);
+// Dynamically import the chart components with ssr: false
+const CandlestickChart = dynamic(() => import('./CandlestickChart'), { ssr: false });
+const BarChart = dynamic(() => import('./BarChart'), { ssr: false });
+const PieChart = dynamic(() => import('./PieChart'), { ssr: false });
+const LineChart = dynamic(() => import('./LineChart'), { ssr: false });
 
-  useEffect(() => {
-    dispatch(fetchCandlestickData());
-    dispatch(fetchLineChartData());
-    dispatch(fetchBarChartData());
-    dispatch(fetchPieChartData());
-  }, [dispatch]);
+const ChartsDashboard = () => {
+  // Example data for each chart - replace with actual data fetching logic
+  const candlestickData = [
+    {
+      type: 'candlestick',
+      x: ['2024-09-01', '2024-09-02', '2024-09-03'],
+      open: [100, 110, 105],
+      high: [115, 120, 110],
+      low: [95, 100, 100],
+      close: [110, 115, 105],
+      name: 'Candlestick Data',
+    }
+  ];
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  const barChartData = [
+    {
+      type: 'bar',
+      x: ['A', 'B', 'C'],
+      y: [10, 20, 30],
+      name: 'Bar Chart Data',
+    }
+  ];
+
+  const pieChartData = [
+    {
+      type: 'pie',
+      labels: ['A', 'B', 'C'],
+      values: [10, 20, 30],
+      name: 'Pie Chart Data',
+    }
+  ];
+
+  const lineChartData = [
+    {
+      type: 'line',
+      x: ['2024-09-01', '2024-09-02', '2024-09-03'],
+      y: [10, 20, 15],
+      name: 'Line Chart Data',
+    }
+  ];
 
   return (
     <div>
-      <h1>Charts Dashboard</h1>
-      <div>
-        <h2>Candlestick Chart</h2>
-        <CandlestickChart data={candlestickData} />
-      </div>
-      <div>
-        <h2>Line Chart</h2>
-        <LineChart data={lineChartData} />
-      </div>
-      <div>
-        <h2>Bar Chart</h2>
-        <BarChart data={barChartData} />
-      </div>
-      <div>
-        <h2>Pie Chart</h2>
-        <PieChart data={pieChartData} />
-      </div>
+      <h2>Candlestick Chart</h2>
+      <CandlestickChart data={candlestickData} />
+
+      <h2>Bar Chart</h2>
+      <BarChart data={barChartData} />
+
+      <h2>Pie Chart</h2>
+      <PieChart data={pieChartData} />
+
+      <h2>Line Chart</h2>
+      <LineChart data={lineChartData} />
     </div>
   );
 };

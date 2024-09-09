@@ -1,0 +1,13 @@
+.chartContainer {
+    margin: 2rem auto;
+    width: 80%;
+    max-width: 1200px;
+  }
+  
+  .chartTitle {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  

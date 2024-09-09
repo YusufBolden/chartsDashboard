@@ -1,5 +1,3 @@
-// types/chartTypes.ts
-
 export interface CandlestickData {
   data: {
     x: string;

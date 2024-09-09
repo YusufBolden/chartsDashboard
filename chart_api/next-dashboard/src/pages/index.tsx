@@ -1,10 +1,15 @@
-import { NextPage } from 'next';
-import ChartsPage from '../components/ChartsPage'; 
+import Link from 'next/link';
 
-const HomePage: NextPage = () => {
+const HomePage = () => {
   return (
     <div>
-      <ChartsPage />
+      <h1>Charts Dashboard</h1>
+      <ul>
+        <li><Link href="/CandlestickPage">Candlestick Chart</Link></li>
+        <li><Link href="/bar">Bar Chart</Link></li>
+        <li><Link href="/pie">Pie Chart</Link></li>
+        <li><Link href="/line">Line Chart</Link></li>
+      </ul>
     </div>
   );
 };

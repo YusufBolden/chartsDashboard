@@ -1,37 +1,17 @@
 import React from 'react';
-import Link from 'next/link';
+import styles from './Header.module.css';
 
-const Header: React.FC = () => {
+const Header = () => {
   return (
-    <header>
+    <header className={styles.header}>
+      <div className={styles.logo}>My Application</div>
       <nav>
-        <ul>
-          <li>
-            <Link href="/">Home</Link>
-          </li>
-          <li>
-            <Link href="/dashboard">Dashboard</Link>
-          </li>
-          {/* Add more links as needed */}
+        <ul className={styles.navList}>
+          <li className={styles.navItem}><a href="/">Home</a></li>
+          <li className={styles.navItem}><a href="/about">About</a></li>
+          <li className={styles.navItem}><a href="/contact">Contact</a></li>
         </ul>
       </nav>
-      <style jsx>{`
-        header {
-          background: #333;
-          color: #fff;
-          padding: 1rem;
-        }
-        nav ul {
-          list-style: none;
-          padding: 0;
-          display: flex;
-          gap: 1rem;
-        }
-        nav a {
-          color: #fff;
-          text-decoration: none;
-        }
-      `}</style>
     </header>
   );
 };
