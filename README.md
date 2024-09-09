@@ -1,108 +1,152 @@
 # Charts Dashboard
 
-# Overview
+This project is a web application that visualizes different types of charts, including Line, Bar, Pie, and Candlestick charts, using Plotly in a React/Next.js frontend and Django backend. The data is hardcoded for demonstration purposes and is fetched through a Django API.
 
-Charts Dashboard is a web application that displays various types of charts using Next.js for the frontend and Django for the backend. It visualizes data with Candlestick, Line, Bar, and Pie charts. This application integrates with APIs to fetch data for the charts and presents it in a user-friendly interface.
+## Table of Contents
 
-## Setup and Running the Application
+- [Installation](#installation)
+- [Running the Application](#running-the-application)
+- [Testing](#testing)
+- [Libraries and Tools](#libraries-and-tools)
+- [Project Structure](#project-structure)
+- [Approach](#approach)
+- [Future Improvements](#future-improvements)
 
-## Prerequisites
+## Installation
 
-    Node.js (v20.11.0 or later)
-    Python (version 3.x recommended)
-    npm (comes with Node.js)
-    pip (Python package manager)
+To set up the project, follow these steps:
 
-## Setting Up the Backend (Django)
+### Backend (Django)
 
-    Clone the repository:
+1. **Clone the repository**:
 
-    bash
+   ```bash
+   gh repo clone YusufBolden/chartsDashboard
+   cd chartsDashboard/chart_api
+   ```
 
-`gh repo clone YusufBolden/chartsDashboard
-cd chart_api`
+2. **Create a virtual environment and activate it**:
 
-Navigate to the Django project directory:
+   ```bash
+   python -m venv env
+   source env/bin/activate
+   ```
 
-bash
+3. **Install dependencies**:
 
-cd chart_api/django_backend
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-Create and activate a virtual environment:
+4. **Run database migrations**:
 
-bash
+   ```bash
+   python manage.py migrate
+   ```
 
-python -m venv venv
-source venv/bin/activate # On Windows, use `venv\Scripts\activate`
+5. **Start the Django server**:
+   ```bash
+   python manage.py runserver
+   ```
 
-Install the required Python packages:
+### Frontend (Next.js)
 
-bash
+1. **Navigate to the `next-dashboard` directory**:
 
-pip install -r requirements.txt
+   ```bash
+   cd ../next-dashboard
+   ```
 
-Apply database migrations:
+2. **Install dependencies**:
 
-bash
+   ```bash
+   npm install
+   ```
 
-python manage.py migrate
+3. **Start the development server**:
+   ```bash
+   npm run dev
+   ```
 
-Run the Django development server:
+## Running the Application
 
-bash
+After starting both the Django and Next.js servers, you can access the application by visiting [http://localhost:3000](http://localhost:3000) in your browser.
 
-    python manage.py runserver
+## Testing
 
-    The Django backend should now be running at http://localhost:8000.
+### Running Tests
 
-Setting Up the Frontend (Next.js)
+To run tests for the application, use the following command:
 
-    Navigate to the Next.js project directory:
+```bash
+npm test
+```
 
-    bash
+### Testing Chart Components
 
-cd chart_api/next_dashboard
+This section outlines the libraries and tools used to test the chart components and the project structure.
 
-Install the required Node.js packages:
+#### Libraries for Testing
 
-bash
+- **Jest**: For running unit tests.
+- **@testing-library/react**: For testing React components.
 
-npm install
+#### Libraries and Tools
 
-Run the Next.js development server:
+**Backend (Django)**
 
-bash
+- **Django 4.2.16**: The backend framework for building the API to serve chart data.
+- **Django REST Framework**: Used to create the API for fetching chart data.
 
-    npm run dev
+**Frontend (Next.js & React)**
 
-    The Next.js frontend should now be running at http://localhost:3000.
+- **Next.js**: A React framework used for building the frontend of the application.
+- **React**: JavaScript library for building user interfaces.
+- **react-plotly.js**: A wrapper around Plotly.js for rendering charts in React.
+- **Plotly.js**: A powerful JavaScript charting library used to render the charts.
 
-Libraries and Tools Used
+**Styling**
 
-    Next.js (v14.2.8): Framework for server-rendered React applications.
-    Django (v4.2.16): Backend framework for building the API.
-    Chart.js (v4.4.4): JavaScript library for rendering charts.
-    react-chartjs-2 (v5.2.0): React wrapper for Chart.js.
-    chartjs-chart-financial (v0.2.1): Extension for Chart.js to support financial charts like Candlestick.
-    TypeScript: For type safety and better development experience.
-    Python Virtual Environment: To manage dependencies for the Django project.
+- **Tailwind CSS**: A utility-first CSS framework used for styling the application.
 
-Approach and Thought Process
+**State Management**
 
-    Frontend and Backend Separation:
-        The application is divided into two main parts: the frontend (Next.js) and the backend (Django). This separation allows for a modular architecture and easier management of the development process.
+- **Redux**: For managing application state, especially for handling chart data.
 
-    Chart Integration:
-        Candlestick Chart: Implemented using chartjs-chart-financial to visualize financial data.
-        Line, Bar, and Pie Charts: Implemented using react-chartjs-2 for easy integration with React components.
+#### Testing
 
-    API Integration:
-        The frontend fetches data from the Django API using the fetch API. This data is then used to render the charts dynamically.
+- **Jest**: For testing the React components and verifying they render correctly.
+- **@testing-library/react**: For testing component interaction and rendering.
 
-    TypeScript for Type Safety:
-        TypeScript is used to provide type safety and better development experience, reducing potential runtime errors and improving code quality.
+#### Project Structure
 
-    Error Handling and Debugging:
-        Added error handling for API calls to ensure that issues are logged and can be addressed without crashing the application.
+The project is divided into two main parts:
 
-This setup provides a robust and flexible platform for visualizing data through various types of charts, and the use of modern frameworks and libraries ensures a smooth development process.
+**Backend (Django)**
+
+- Provides hardcoded chart data via a REST API.
+  - `chart_api/urls.py`: Configures the URL routing for the API.
+  - `charts/views.py`: Contains views that provide chart data for the frontend.
+  - `tests.py`: Django tests for the backend views.
+
+**Frontend (Next.js)**
+
+- Renders the charts fetched from the backend.
+  - `components/`: Contains the individual chart components (`BarChart.tsx`, `PieChart.tsx`, etc.).
+  - `pages/`: Contains the main pages, including the chart dashboard (`DashboardPage.tsx`).
+  - `redux/`: Manages state with Redux for API integration and chart data handling.
+
+#### Approach and Thought Process
+
+- **Component Design**: The chart components were built in isolation, following the principles of separation of concerns. Each chart component is reusable and expects data as props.
+- **API Integration**: A Django backend was chosen to simulate serving chart data via a REST API. Even though the data is hardcoded, the structure allows for easy extension to use real data.
+- **Testing**: Focus was on ensuring each chart component renders without crashing and handles mock data appropriately. React Testing Library was used for component testing, ensuring the charts render in the DOM as expected.
+- **Redux for State Management**: Redux was used for handling chart data and API requests, facilitating easier management of global state across the application.
+- **Plotly for Charts**: This was selected for its versatility in rendering complex financial charts such as a candlestick chart. It integrates smoothly with React for dynamic data visualization.
+
+**Future Improvements**
+
+- **Real-time Data**: Integrate real-time financial or statistical data for charts using an external API.
+- **Enhanced Testing**: Increase test coverage by adding more tests for edge cases and error handling.
+- **UI Improvements**: Refine the UI for better usability and responsiveness.
+- **Authentication**: Implement user authentication for personalized dashboards.
