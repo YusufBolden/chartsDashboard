@@ -76,7 +76,9 @@ After starting both the Django and Next.js servers, you can access the applicati
 
 To build the Next.js application for production, use the following command:
 
-`npm run build`
+```bash
+npm run build
+```
 
 This command generates an optimized production build in the .next directory.
 
@@ -84,7 +86,9 @@ This command generates an optimized production build in the .next directory.
 
 To start the production server after building the application, use:
 
-`npm start`
+```bash
+npm start
+```
 
 This command starts the server with the production build.
 
