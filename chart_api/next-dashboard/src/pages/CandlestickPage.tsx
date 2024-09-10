@@ -1,21 +1,25 @@
-import CandlestickChart from '../components/CandlestickChart';
+// pages/CandlestickPage.tsx
 
-// Example data for Candlestick Chart
-const exampleData = [
-  {
+import React from 'react';
+import dynamic from 'next/dynamic';
+
+// Dynamically import the CandlestickChart component
+const CandlestickChart = dynamic(() => import('../components/CandlestickChart'), { ssr: false });
+
+const CandlestickPage: React.FC = () => {
+  // Sample data for the CandlestickChart
+  const data = {
     x: ['2024-01-01', '2024-01-02', '2024-01-03'],
-    open: [100, 110, 105],
-    high: [115, 120, 110],
-    low: [95, 100, 100],
-    close: [110, 105, 108]
-  }
-];
+    open: [100, 110, 120],
+    high: [110, 115, 125],
+    low: [95, 105, 115],
+    close: [105, 112, 122],
+  };
 
-const CandlestickPage = () => {
   return (
     <div>
       <h1>Candlestick Chart</h1>
-      <CandlestickChart data={exampleData} />
+      <CandlestickChart data={data} />
     </div>
   );
 };

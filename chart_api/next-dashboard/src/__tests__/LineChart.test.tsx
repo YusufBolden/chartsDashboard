@@ -1,17 +1,15 @@
-import React from 'react';
+// __tests__/LineChart.test.tsx
+
 import { render } from '@testing-library/react';
-import '@testing-library/jest-dom';
 import LineChart from '../components/LineChart';
 
-test('renders LineChart without crashing', () => {
-  const mockData = [
-    {
-      x: ['January', 'February', 'March'],
-      y: [10, 20, 30],
-      type: 'scatter',
-      mode: 'lines',
-    },
-  ];
+// Updated mock data to match LineChartData type
+const mockData = {
+  x: ['January', 'February', 'March'],
+  y: [10, 15, 13],
+};
+
+test('renders LineChart component', () => {
   const { container } = render(<LineChart data={mockData} />);
   expect(container).toBeInTheDocument();
 });

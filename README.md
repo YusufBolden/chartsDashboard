@@ -72,6 +72,22 @@ To set up the project, follow these steps:
 
 After starting both the Django and Next.js servers, you can access the application by visiting [http://localhost:3000](http://localhost:3000) in your browser.
 
+## Building the Application
+
+To build the Next.js application for production, use the following command:
+
+`npm run build`
+
+This command generates an optimized production build in the .next directory.
+
+## Starting the Production Server
+
+To start the production server after building the application, use:
+
+`npm start`
+
+This command starts the server with the production build.
+
 ## Testing
 
 ### Running Tests

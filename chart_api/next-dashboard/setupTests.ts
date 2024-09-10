@@ -1,1 +1,5 @@
-import '@testing-library/jest-dom/extend-expect';
+Object.defineProperty(window.URL, 'createObjectURL', {
+    value: jest.fn(),
+    writable: true,
+  });
+  

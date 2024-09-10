@@ -1,21 +1,18 @@
-import React from 'react';
+// __tests__/CandlestickChart.test.tsx
+
 import { render } from '@testing-library/react';
-import '@testing-library/jest-dom';
 import CandlestickChart from '../components/CandlestickChart';
 
-test('renders CandlestickChart without crashing', () => {
-  const mockData = [
-    {
-      x: ['2023-01-01', '2023-01-02', '2023-01-03'],
-      close: [100, 200, 150],
-      decreasing: { line: { color: 'red' } },
-      high: [210, 230, 190],
-      increasing: { line: { color: 'green' } },
-      low: [90, 170, 130],
-      open: [95, 180, 145],
-      type: 'candlestick',
-    },
-  ];
+// Updated mock data to match CandlestickChartData type
+const mockData = {
+  x: ['2024-01-01', '2024-01-02', '2024-01-03'],
+  open: [100, 110, 120],
+  high: [110, 115, 125],
+  low: [95, 105, 115],
+  close: [105, 112, 122],
+};
+
+test('renders CandlestickChart component', () => {
   const { container } = render(<CandlestickChart data={mockData} />);
   expect(container).toBeInTheDocument();
 });

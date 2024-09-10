@@ -1,37 +1,38 @@
-import React from 'react';
-import CandlestickChart from '../components/CandlestickChart';
-import BarChart from '../components/BarChart';
-import PieChart from '../components/PieChart';
-import LineChart from '../components/LineChart';
+// pages/ChartsDashboard.tsx
 
-// Example data for all charts
-const candlestickData = [{
-  x: ['2024-01-01', '2024-01-02', '2024-01-03'],
-  open: [100, 110, 120],
-  high: [110, 115, 125],
-  low: [95, 105, 115],
-  close: [105, 112, 122],
-}];
+import dynamic from 'next/dynamic';
 
-const barChartData = [{
-  x: ['Q1', 'Q2', 'Q3', 'Q4'],
-  y: [10, 20, 15, 25],
-  name: 'Sales'
-}];
+// Dynamically import the chart components with ssr: false
+const CandlestickChart = dynamic(() => import('../components/CandlestickChart'), { ssr: false });
+const BarChart = dynamic(() => import('../components/BarChart'), { ssr: false });
+const PieChart = dynamic(() => import('../components/PieChart'), { ssr: false });
+const LineChart = dynamic(() => import('../components/LineChart'), { ssr: false });
 
-const pieChartData = [{
-  labels: ['A', 'B', 'C'],
-  values: [30, 50, 20],
-  name: 'Distribution'
-}];
+const ChartsDashboard: React.FC = () => {
+  // Example data for each chart
+  const candlestickData = {
+    x: ['2024-09-01', '2024-09-02', '2024-09-03'],
+    open: [100, 110, 105],
+    high: [115, 120, 110],
+    low: [95, 100, 100],
+    close: [110, 115, 105],
+  };
 
-const lineChartData = [{
-  x: ['Jan', 'Feb', 'Mar'],
-  y: [30, 40, 35],
-  name: 'Monthly Revenue'
-}];
+  const barChartData = {
+    x: ['A', 'B', 'C'],
+    y: [10, 20, 30],
+  };
 
-const ChartPage: React.FC = () => {
+  const pieChartData = {
+    labels: ['A', 'B', 'C'],
+    values: [10, 20, 30],
+  };
+
+  const lineChartData = {
+    x: ['2024-09-01', '2024-09-02', '2024-09-03'],
+    y: [10, 20, 15],
+  };
+
   return (
     <div>
       <h2>Candlestick Chart</h2>
@@ -49,4 +50,4 @@ const ChartPage: React.FC = () => {
   );
 };
 
-export default ChartPage;
+export default ChartsDashboard;

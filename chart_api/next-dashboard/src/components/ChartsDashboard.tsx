@@ -1,3 +1,5 @@
+// components/ChartsDashboard.tsx
+
 import dynamic from 'next/dynamic';
 
 // Dynamically import the chart components with ssr: false
@@ -6,46 +8,30 @@ const BarChart = dynamic(() => import('./BarChart'), { ssr: false });
 const PieChart = dynamic(() => import('./PieChart'), { ssr: false });
 const LineChart = dynamic(() => import('./LineChart'), { ssr: false });
 
-const ChartsDashboard = () => {
-  // Example data for each chart - replace with actual data fetching logic
-  const candlestickData = [
-    {
-      type: 'candlestick',
-      x: ['2024-09-01', '2024-09-02', '2024-09-03'],
-      open: [100, 110, 105],
-      high: [115, 120, 110],
-      low: [95, 100, 100],
-      close: [110, 115, 105],
-      name: 'Candlestick Data',
-    }
-  ];
+const ChartsDashboard: React.FC = () => {
+  // Example data for each chart
+  const candlestickData = {
+    x: ['2024-09-01', '2024-09-02', '2024-09-03'],
+    open: [100, 110, 105],
+    high: [115, 120, 110],
+    low: [95, 100, 100],
+    close: [110, 115, 105],
+  };
 
-  const barChartData = [
-    {
-      type: 'bar',
-      x: ['A', 'B', 'C'],
-      y: [10, 20, 30],
-      name: 'Bar Chart Data',
-    }
-  ];
+  const barChartData = {
+    x: ['A', 'B', 'C'],
+    y: [10, 20, 30],
+  };
 
-  const pieChartData = [
-    {
-      type: 'pie',
-      labels: ['A', 'B', 'C'],
-      values: [10, 20, 30],
-      name: 'Pie Chart Data',
-    }
-  ];
+  const pieChartData = {
+    labels: ['A', 'B', 'C'],
+    values: [10, 20, 30],
+  };
 
-  const lineChartData = [
-    {
-      type: 'line',
-      x: ['2024-09-01', '2024-09-02', '2024-09-03'],
-      y: [10, 20, 15],
-      name: 'Line Chart Data',
-    }
-  ];
+  const lineChartData = {
+    x: ['2024-09-01', '2024-09-02', '2024-09-03'],
+    y: [10, 20, 15],
+  };
 
   return (
     <div>
