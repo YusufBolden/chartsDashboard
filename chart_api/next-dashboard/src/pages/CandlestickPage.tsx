@@ -1,5 +1,3 @@
-// pages/CandlestickPage.tsx
-
 import React from 'react';
 import dynamic from 'next/dynamic';
 

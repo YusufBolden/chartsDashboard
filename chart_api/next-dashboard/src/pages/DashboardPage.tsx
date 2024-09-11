@@ -1,5 +1,3 @@
-// pages/DashboardPage.tsx
-
 import dynamic from 'next/dynamic';
 
 // Dynamically import the chart components with ssr: false
