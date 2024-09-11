@@ -1,8 +1,5 @@
 from django.db import models
 
-# charts/models.py
-from django.db import models
-
 
 class CandlestickData(models.Model):
     date = models.DateField()
