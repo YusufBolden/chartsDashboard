@@ -1,5 +1,3 @@
-// pages/ChartPage.tsx
-
 import React from 'react';
 import CandlestickChart from '../components/CandlestickChart';
 import BarChart from '../components/BarChart';
