@@ -42,32 +42,26 @@ def pie_chart_data(request):
 
 # Candlestick chart data
 def candlestick_chart_data(request):
-    data = {
-        "x": [
-            "2024-09-08",
-            "2024-09-07",
-            "2024-09-06",
-            "2024-09-05",
-            "2024-09-04",
-            "2024-09-03",
-            "2024-09-02",
-            "2024-09-01",
-            "2024-08-31",
-            "2024-08-30",
-        ],
-        "open": [24, 19, 57, 23, 17, 59, 55, 74, 54, 55],
-        "high": [105, 104, 92, 93, 31, 31, 43, 114, 36, 107],
-        "low": [75, 64, 55, 1, 87, 15, 27, 1, 32, 10],
-        "close": [81, 36, 98, 68, 77, 94, 19, 80, 75, 91],
-    }
-    return JsonResponse(data)
+    labels = [
+        "2024-09-08",
+        "2024-09-07",
+        "2024-09-06",
+        "2024-09-05",
+        "2024-09-04",
+        "2024-09-03",
+        "2024-09-02",
+        "2024-09-01",
+        "2024-08-31",
+        "2024-08-30",
+    ]
 
     # OHLC data (Open, High, Low, Close)
     data = {
-        "labels": labels,
+        "x": labels,
         "open": generate_random_data(10),
         "high": [x + random.randint(5, 15) for x in generate_random_data(10)],
         "low": [x - random.randint(5, 15) for x in generate_random_data(10)],
         "close": generate_random_data(10),
     }
+
     return JsonResponse(data)
